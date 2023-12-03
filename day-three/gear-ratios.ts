@@ -1,4 +1,4 @@
-export const waterSource = (data: string[]): number => {
+export const gearRatios = (data: string[]): number => {
   const engine = data.map((row) => row.split(``));
   const engineParts: number[] = [];
 
