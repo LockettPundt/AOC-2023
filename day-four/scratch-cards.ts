@@ -1,23 +1,53 @@
-export const scratchCards = (data: string[]): number => {
+export const scratchCards = (
+  data: string[]
+): { totalScore: number; totalCards: number } => {
   const cards = data.map((dataString) =>
     dataString
       .split(`: `)[1]
       .split(` | `)
       .map((card) => card.split(` `).filter(Boolean))
   );
-  return cards.reduce((sum, [winningNumbers, myNumbers]) => {
-    return (
-      sum +
-      winningNumbers.reduce((score, winningNumber) => {
-        if (myNumbers.includes(winningNumber)) {
-          if (!score) {
-            score = 1;
-          } else {
-            score *= 2;
+  const extraCards = new Map();
+  cards.forEach((_, gameIndex) => {
+    extraCards.set(gameIndex, 1);
+  });
+  const totalScore = cards.reduce(
+    (sum, [winningNumbers, myNumbers], gameIndex) => {
+      const { score, wins } = winningNumbers.reduce(
+        (totals, winningNumber) => {
+          if (myNumbers.includes(winningNumber)) {
+            totals.wins += 1;
+            if (!totals.score) {
+              totals.score = 1;
+            } else {
+              totals.score *= 2;
+            }
           }
+          return totals;
+        },
+        { score: 0, wins: 0 }
+      );
+      if (wins > 0) {
+        for (let i = 1; i <= wins; i++) {
+          extraCards.set(
+            gameIndex + i,
+            extraCards.get(gameIndex + i) + extraCards.get(gameIndex)
+          );
         }
-        return score;
-      }, 0)
-    );
-  }, 0);
+      }
+      return sum + score;
+    },
+    0
+  );
+
+  let totalCards = 0;
+
+  for (const [, value] of extraCards) {
+    totalCards += value;
+  }
+
+  return {
+    totalScore,
+    totalCards,
+  };
 };
