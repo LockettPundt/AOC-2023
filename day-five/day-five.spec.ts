@@ -1,4 +1,4 @@
-import { splitByNewLine, splitByRegex } from '../utils/helpers';
+import { splitByRegex } from '../utils/helpers';
 import { islandIslandAlmanac } from './if-you-give-a-seed-a-fertilizer';
 
 describe(`Day five`, () => {
