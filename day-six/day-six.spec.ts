@@ -5,12 +5,12 @@ describe(`Day six`, () => {
   it(`Part one`, () => {
     const data = splitByNewLine(`test-data.txt`, __dirname);
     const result = waitForIt(data);
-    expect(result).toEqual(288);
+    expect(result.eachRaceResult).toEqual(288);
   });
 
-  xit(`Part two`, () => {
+  it(`Part two`, () => {
     const data = splitByNewLine(`test-data.txt`, __dirname);
     const result = waitForIt(data);
-    expect(result).toEqual(281);
+    expect(result.singleRaceResult).toEqual(71503);
   });
 });
