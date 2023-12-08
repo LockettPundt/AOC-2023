@@ -7,10 +7,4 @@ describe(`Day seven`, () => {
     const result = camelCards(data);
     expect(result).toEqual(6440);
   });
-
-  xit(`Part two`, () => {
-    const data = splitByNewLine(`test-data.txt`, __dirname);
-    const result = camelCards(data);
-    expect(result).toEqual(5905);
-  });
 });
