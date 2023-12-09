@@ -1,10 +1,10 @@
 import { splitByNewLine } from '../utils/helpers';
-import { hauntedWasteland } from './haunted-wasteland';
+import { mirageMaintenance } from './mirage-maintenance';
 
 describe(`Day seven`, () => {
   it(`Part one`, () => {
     const data = splitByNewLine(`test-data.txt`, __dirname);
-    const result = hauntedWasteland(data);
-    expect(result).toEqual(2);
+    const result = mirageMaintenance(data);
+    expect(result).toEqual(114);
   });
 });
